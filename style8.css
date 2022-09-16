@@ -1,0 +1,358 @@
+/*-------------------- INDEX ------------- */
+#imgLogotipoLogin{
+    width: 285px;
+}
+
+.btn{
+    width: 100%;
+}
+
+#div1 { 
+    margin: 0 auto;
+    margin-top: 15vh;
+    padding: 20px;
+    text-align: center;
+    background-color:#fff;
+    height:396px;
+    width:350px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px gray;
+}
+
+#divEmailEnviadoSucesso{
+    display:none;
+    margin: 0 auto;
+    margin-top: 15vh;
+    padding: 20px;
+    text-align: center;
+    background-color:#fff;
+    height:396px;
+    width:350px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px gray;    
+}
+
+#falhaAutenticar{
+    color:red;
+}
+
+
+/*-------------------- HOME ------------- */
+#containerHome{
+    margin: 0 auto;
+    margin-top: 15px;
+    display: flex;
+    margin-left:5px;
+    width: 96%;
+}
+
+#imgLogotipoHome{
+    width: 50px;
+    height: 35px;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 30px;
+}
+
+.colHome{
+    border: 1px solid gray;
+    height: auto;
+    min-width:25.5%;
+    margin:1px;
+    background-color: #fff;
+}
+
+.colHome-dupla{
+    border: 1px solid gray;
+    height: auto;
+    min-width:52%;
+    margin:1px;
+    background-color: #fff;
+}
+
+.tituloTbLeitos{
+    color: #4a7c3d;
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+.subtituloTbLeitos{
+    color: #4a7c3d;
+    background-color: #ddd;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.tamanhoTextAreas{
+    width: 100%;
+    height: auto;
+    font-size: 11px;
+    border:none;
+    background-color: #fff;
+
+}
+
+.txt_listaProblemas{
+    height: 46vh;
+}
+
+.txt_examesRelevantes{
+    height: 30vh;
+}
+
+.txt_culturas{
+    height: 10vh;
+}
+
+.txt_laboratorial{
+    height: 13vh;
+}
+
+.txt_evolucaoClinicaDiaria{
+    height: 29vh;
+}
+
+.txt_conduta{
+    height: 32vh;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5; }
+  
+textarea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #ddd; }
+
+.btnNovoHome{
+    height: 29px;
+    width: 29px;
+    float: right;
+    margin-top: -5px;
+    cursor: pointer;
+}
+
+.btnCopy{
+    height: 24px;
+    width: 29px;
+    float: left;
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+.btnTrocarLeito{
+    height: 20px;
+    width: 29px;
+    float: right;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#linkAltaObito{
+    font-weight: bold;
+    text-align: right;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+}
+
+#linkAltaObito a{
+    text-decoration: none;
+    background-color: rgba(74, 124, 61,0.8);
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.navbar{
+    
+    background-color: rgba(74, 124, 61,0.8);
+
+}
+
+.navbar-nav{
+    color: #fff;
+}
+
+.btn-close{
+    float: right;
+}
+
+#tituloMenu{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.diasUTI{
+    float: left;
+    font-weight: 300;
+}
+
+
+.modalHome{
+    position:absolute;
+    margin: 45px auto;
+    margin-left: 18%;
+    width: auto;
+    border: 1px solid orange;
+    background-color: #ddd;
+    text-align: right;
+    padding: 3px;
+    display: none;
+}
+
+
+.w3-modal-content{
+    /*position:absolute;
+    margin: 300px auto;
+    margin-left: 39%;
+    width: auto;*/
+    border: 1px solid orange;
+    background-color: #ddd;
+    text-align: left;
+    align-items: left;
+    padding: 10px;
+    /*display: none;*/
+}
+
+.form-modais{
+    width: 100%;
+    text-align: right;
+    padding: 20px;
+}
+
+.form-modais-copy,.form-modais-trocarLeito{
+    width: 100%;
+    text-align: left;
+    padding: 2px;
+}
+
+
+
+.label-modais{
+    width: 80%;
+    display: inline;
+    text-align: left;
+    
+}
+
+.divInvasao, .divAntibiotico{
+    cursor: pointer;
+}
+.link{
+    cursor: pointer;
+    padding: 5px;
+
+}
+
+.confirmCancelCad{
+    cursor: pointer;
+}
+
+.txt_textoCopiado{
+    font-size: 14px;
+    scroll-behavior: auto;
+    text-align: left;
+    
+}
+
+/* ----  Mobile --------*/
+
+/* ------ Home  --------*/
+@media (max-width: 768px){
+
+    #containerHome{
+        display: block;
+    }
+    
+    .colHome{
+        min-width: 98%;
+    }
+    
+    .tituloTbLeitos{
+        color: #fff;
+        background-color: #000;
+        font-weight: bold;
+    }
+    
+    .subtituloTbLeitos{
+        color: #4a7c3d;
+        background-color: #ddd;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .modalHome{
+        position:absolute;
+        margin:15px auto;
+        padding:50px;
+        border: 1px solid orange;
+        background-color: #ddd;
+        text-align: right;
+        padding: 3px;
+        display: none;
+        width:100%;
+        height:100%;
+    }
+
+    .modalInvasao{
+        position:absolute;
+        margin: 15px auto;
+        border: 1px solid orange;
+        background-color: #ddd;
+        text-align: right;
+        padding: auto;
+        display: none;
+        width:100%;
+        height:100%;
+    }
+
+    .w3-modal-content{
+        /*position:absolute;
+        margin: 300px auto;
+        margin-left: 39%;
+        width: auto;*/
+        width: 30%;
+        border: 1px solid orange;
+        background-color: #ddd;
+        text-align: left;
+        /*padding: 3px;
+        display: none;*/
+    }
+
+    .txt_textoCopiado{
+        font-size: 14px;
+        scroll-behavior: auto;
+        text-align: left;
+        
+    }
+
+    .label-modais{
+        width: 65%;
+    }
+    
+
+    .tamanhoTextAreas{
+        width: 100%;
+        height:45vh;
+        font-size: 11px;
+        border:none;
+        background-color: #fff;
+    
+    }
+
+    .txt_antibioticos{
+        height: auto;
+    }
+
+    .txt_invasoes{
+        height: auto;
+    }
+
+    .txt_culturas{
+        height: 25vh;
+    }
+  
+
+}
