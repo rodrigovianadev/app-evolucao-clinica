@@ -27,17 +27,22 @@ for(let i = 1; i <= 10;i++){
     //let listaCampos = ['listaProblemas', 'infusoes','sinaisVitais','balancoHidrico','nutricional',
     //'ventilacao','gasometria','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
 
-    let listaCampos = ['listaProblemas','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
+    let listaCampos = ['listaProblemas','hipotesesDiagnosticas','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
 
     for(let cont = 0; cont <= listaCampos.length -1;cont++){
         
         let textoCampo = listaCampos[cont]
 
-        //alert(textoCampo)
+        document.getElementById("bold").addEventListener("click", function(){selecionaCheckEdicao(i,textoCampo,'formatou')})
+        document.getElementById("italic").addEventListener("click", function(){selecionaCheckEdicao(i,textoCampo,'formatou')})
+        document.getElementById("underline").addEventListener("click", function(){selecionaCheckEdicao(i,textoCampo,'formatou')})
+        document.getElementById("foreColor").addEventListener("click", function(){selecionaCheckEdicao(i,textoCampo,'formatou')})
 
-        document.getElementById("txt_" + textoCampo + "_Leito " + i).addEventListener("blur", function(){insertCamposTexto(i,textoCampo)})
+        document.getElementById("txt_" + textoCampo + "_Leito " + i).addEventListener("blur", function(){insertCamposTexto(i,textoCampo,document.getElementById("txt_global2").innerHTML)})
         document.getElementById("txt_" + textoCampo  + "_Leito " + i).addEventListener("keyup", function(){escreveCheckEdicao(i,textoCampo)})
-    
+        document.getElementById("txt_" + textoCampo  + "_Leito " + i).addEventListener("focus", function(){selecionaCheckEdicao(i,textoCampo)})
+
+
     }
         //document.getElementById("txt_listaProblemas_Leito " + i).addEventListener("blur", function(){insertCamposTexto(i,'listaProblemas')})
     //document.getElementById("txt_listaProblemas_Leito " + i).addEventListener("keyup", function(){escreveCheckEdicao(i,'listaProblemas')})
@@ -61,18 +66,52 @@ function escreveCheckEdicao(i,campo){
         let check_edicao = document.getElementById("txt_checkedicao_" + campo + "_Leito " + i)
 
         check_edicao.value = 'editou'
+
+        document.getElementById("txt_global").innerHTML =
+        document.getElementById("txt_" + campo + "_Leito " + i).innerHTML
+
     
     }
 }
 
+function selecionaCheckEdicao(i,campo,acao){
 
-function insertCamposTexto(i,campo){
+        clearInterval(x)
+
+        let check_edicao = document.getElementById("txt_checkedicao_" + campo + "_Leito " + i)
+
+
+        if(document.getElementById("txt_global").innerText != document.getElementById("txt_" + campo + "_Leito " + i).innerText
+        && document.getElementById("txt_global").innerHTML != 'formatou'){      
+            document.getElementById("txt_global").innerHTML =
+            document.getElementById("txt_" + campo + "_Leito " + i).innerHTML
+
+            document.getElementById("txt_global2").innerHTML =
+            document.getElementById("txt_" + campo + "_Leito " + i).innerHTML
+
+        }else if(acao == 'formatou'){
+
+            check_edicao.value = 'editou'
+
+            document.getElementById("txt_global").innerHTML = 'formatou'
+
+        }
+}
+
+
+function insertCamposTexto(i,campo,valorAntigo){
 
     
 
     let check_edicao = document.getElementById("txt_checkedicao_" + campo + "_Leito " + i)
+    let valorNovo = document.getElementById("txt_" + campo + "_Leito " + i).innerHTML
 
-    if(check_edicao.value == 'editou'){
+    //alert(valorAntigo + ' | ' + valorNovo)
+
+    if(check_edicao.value == 'editou' && 
+    (valorAntigo != valorNovo) || 
+    (document.getElementById("txt_global").innerHTML != valorNovo) ||
+    (document.getElementById("txt_global").innerHTML != valorAntigo)){
 
         clearInterval(x)
 
@@ -97,7 +136,7 @@ function insertCamposTexto(i,campo){
                 ajax.open('GET', 
                 'querys_home.php?txt_' + campo + '=insert' +
                 '&id_internacao=' + encodeURIComponent(id_internacao.value) +
-                '&texto=' + encodeURIComponent(texto.value.replaceAll("\n", "<br>","g")))
+                '&texto=' + encodeURIComponent(texto.innerHTML.replaceAll("\n", "<br>","g")))
 
             }else{
 
@@ -108,7 +147,7 @@ function insertCamposTexto(i,campo){
                 ajax.open('GET',
                 'querys_home.php?txt_' + encodeURIComponent(campo) + '=update&NomeLeito=Leito ' + i +
                 '&id_internacao=' + encodeURIComponent(id_internacao.value) +
-                '&texto=' + encodeURIComponent(texto.value.replaceAll("\n", "<br>","g")))
+                '&texto=' + encodeURIComponent(texto.innerHTML.replaceAll("\n", "<br>","g")))
             }
 
             console.log(ajax)
@@ -163,6 +202,19 @@ function insertCamposTexto(i,campo){
 
         }
 
+        document.getElementById("txt_global").innerText = ''
+        document.getElementById("txt_global2").innerText = ''
+        valorAntigo = ''
+        check_edicao.value = ''
+
+    }else if(check_edicao.value != 'editou' && valorAntigo == valorNovo){
+
+        check_edicao.value = ''
+
+        x = setInterval(function(){
+            execTodosSelects('timer')
+        },5000)
+
     }
 
 
@@ -173,6 +225,7 @@ function selectCamposTexto(i){
     
     let id_internacao = document.getElementById("txt_idInternacao_Leito " + i)
     let txt_lista_problemas = document.getElementById("txt_listaProblemas_Leito " + i)
+    let txt_hipoteses_diagnosticas = document.getElementById("txt_hipotesesDiagnosticas_Leito " + i)
     //let txt_infusoes = document.getElementById("txt_infusoes_Leito " + i)
     //let txt_sinaisVitais = document.getElementById("txt_sinaisVitais_Leito " + i)
     //let txt_balancoHidrico = document.getElementById("txt_balancoHidrico_Leito " + i)
@@ -197,13 +250,13 @@ function selectCamposTexto(i){
         //let listaCampos = ['listaProblemas', 'infusoes','sinaisVitais','balancoHidrico','nutricional',
         //'ventilacao','gasometria','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
 
-        let listaCampos = ['listaProblemas','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
+        let listaCampos = ['listaProblemas','hipotesesDiagnosticas','culturas','examesRelevantes','evolucaoClinicaDiaria','conduta','laboratorial']
 
         //let campos = ['texto_listaProblemas', 'texto_infusoes','texto_sinaisVitais','texto_balancoHidrico',
         //'texto_nutricional','texto_ventilacao','texto_gasometria','texto_culturas','texto_examesRelevantes',
         //'texto_evolucaoClinicaDiaria','texto_conduta','texto_laboratorial']
 
-        let campos = ['texto_listaProblemas','texto_culturas','texto_examesRelevantes',
+        let campos = ['texto_listaProblemas','texto_hipotesesDiagnosticas','texto_culturas','texto_examesRelevantes',
         'texto_evolucaoClinicaDiaria','texto_conduta','texto_laboratorial']
 
         if (ajax.readyState == 4 && ajax.status == 200) {
@@ -217,7 +270,10 @@ function selectCamposTexto(i){
                 let check_edicao = document.getElementById("txt_checkedicao_" + listaCampos[e] + "_Leito " + i)
 
                 if(campos[e] == 'texto_listaProblemas' && check_edicao.value != 'editou'){
-                    txt_lista_problemas.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_lista_problemas.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
+
+                }else if(campos[e] == 'texto_hipotesesDiagnosticas' && check_edicao.value != 'editou'){
+                    txt_hipoteses_diagnosticas.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')    
                 /*}else if(campos[e] == 'texto_infusoes' && check_edicao.value != 'editou'){
                     txt_infusoes.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
                 }else if(campos[e] == 'texto_sinaisVitais' && check_edicao.value != 'editou'){
@@ -232,15 +288,15 @@ function selectCamposTexto(i){
                     txt_gasometria.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
                 */
                 }else if(campos[e] == 'texto_culturas' && check_edicao.value != 'editou'){
-                    txt_culturas.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_culturas.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
                 }else if(campos[e] == 'texto_examesRelevantes' && check_edicao.value != 'editou'){
-                    txt_examesRelevantes.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_examesRelevantes.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
                 }else if(campos[e] == 'texto_evolucaoClinicaDiaria' && check_edicao.value != 'editou'){
-                    txt_evolucaoClinicaDiaria.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_evolucaoClinicaDiaria.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
                 }else if(campos[e] == 'texto_conduta' && check_edicao.value != 'editou'){
-                    txt_conduta.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_conduta.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
                 }else if(campos[e] == 'texto_laboratorial' && check_edicao.value != 'editou'){
-                    txt_laboratorial.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','').replaceAll("<br>","\n")
+                    txt_laboratorial.innerHTML = resultAjax.substring(PosIni,PosFim).replace('<' + campos[e] + '>','')
                 }
 
            }
@@ -482,6 +538,7 @@ function abreModalCad(i,e){
     let peso = document.getElementById("txt_peso_Leito " + i)
     let saps3 = document.getElementById("txt_saps3_Leito " + i)
     let id_listaProblemas = document.getElementById("txt_id_listaProblemas_Leito " + i)
+    let id_hipotesesDiagnosticas = document.getElementById("txt_id_hipotesesDiagnosticas_Leito " + i)
     //let id_infusoes = document.getElementById("txt_id_infusoes_Leito " + i)
     //let id_sinaisVitais = document.getElementById("txt_id_sinaisVitais_Leito " + i)
     //let id_balancoHidrico = document.getElementById("txt_id_balancoHidrico_Leito " + i)
@@ -522,7 +579,7 @@ function abreModalCad(i,e){
             
 
                 let campos = ['id_internacao', 'nome_paciente', 'sexo','dt_nascimento','convenio','dt_internacao', 
-                'peso', 'saps3','diasUti','id_lista_problemas', 'id_infusoes','id_sinaisVitais',
+                'peso', 'saps3','diasUti','id_lista_problemas','id_hipotesesDiagnosticas', 'id_infusoes','id_sinaisVitais',
                 'id_balancoHidrico','id_nutricional','id_ventilacao','id_gasometria',
                 'id_culturas','id_examesRelevantes','id_evolucaoClinicaDiaria','id_conduta','id_laboratorial','idade']
 
@@ -570,6 +627,8 @@ function abreModalCad(i,e){
                         lbl_dias_uti.innerText = 'Dias Uti: ' + resultAjax.substring(PosIni,PosFim).replace('<' + campos[i] + '>','')
                     }else if(campos[i] == 'id_lista_problemas'){
                         id_listaProblemas.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[i] + '>','')
+                    }else if(campos[i] == 'id_hipotesesDiagnosticas'){
+                        id_hipotesesDiagnosticas.value = resultAjax.substring(PosIni,PosFim).replace('<' + campos[i] + '>','')
                     }
                     /*
                     else if(campos[i] == 'id_infusoes'){
@@ -1106,6 +1165,7 @@ function btnCopy(i){
     let modal = document.getElementById('modalTextoCopiado_Leito ' + i)
     let textArea = document.getElementById('txt_textoCopiado_Leito ' + i)
     let txt_lista_problemas = document.getElementById("txt_listaProblemas_Leito " + i)
+    let txt_hipoteses_diagnosticas = document.getElementById("txt_hipotesesDiagnosticas_Leito " + i)
     //let txt_infusoes = document.getElementById("txt_infusoes_Leito " + i)
     //let txt_sinaisVitais = document.getElementById("txt_sinaisVitais_Leito " + i)
     //let txt_balancoHidrico = document.getElementById("txt_balancoHidrico_Leito " + i)
@@ -1162,19 +1222,24 @@ function btnCopy(i){
 
 
 
-    if(txt_lista_problemas.value != ''){
+    if(txt_lista_problemas.innerText != ''){
         textArea.innerHTML  = textArea.innerHTML + '</br></br>' +'#LISTA DE PROBLEMAS'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_lista_problemas.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_lista_problemas.innerText.replaceAll("\n","</br>")
     }
 
-    if(txt_examesRelevantes.value != ''){
+    if(txt_hipoteses_diagnosticas.innerText != ''){
+        textArea.innerHTML  = textArea.innerHTML + '</br></br>' +'#HIPÓTESES DIAGNÓSTICAS'
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_hipoteses_diagnosticas.innerText.replaceAll("\n","</br>")
+    }
+
+    if(txt_examesRelevantes.innerText != ''){
         textArea.innerHTML  =  textArea.innerHTML + '</br></br>' +'#EXAMES RELEVANTES'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_examesRelevantes.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_examesRelevantes.innerText.replaceAll("\n","</br>")
     }
 
-    if(txt_laboratorial.value != ''){
+    if(txt_laboratorial.innerText != ''){
         textArea.innerHTML  =  textArea.innerHTML + '</br></br>' +'#LABORATORIAL'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_laboratorial.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_laboratorial.innerText.replaceAll("\n","</br>")
     }
     
     /*
@@ -1216,9 +1281,9 @@ function btnCopy(i){
     }
 
 
-    if(txt_culturas.value != ''){
+    if(txt_culturas.innerText != ''){
         textArea.innerHTML  =  textArea.innerHTML + '</br></br>' +'#CULTURAS'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_culturas.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_culturas.innerText.replaceAll("\n","</br>")
     }
 
     if(div_antibioticos.innerText != ''){
@@ -1227,14 +1292,14 @@ function btnCopy(i){
     }
 
 
-    if(txt_evolucaoClinicaDiaria.value != ''){
+    if(txt_evolucaoClinicaDiaria.innerText != ''){
         textArea.innerHTML  =  textArea.innerHTML + '</br></br>' +'#EVOLUÇÃO CLINICA DIÁRIA'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_evolucaoClinicaDiaria.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_evolucaoClinicaDiaria.innerText.replaceAll("\n","</br>")
     }
 
-    if(txt_conduta.value != ''){
+    if(txt_conduta.innerText != ''){
         textArea.innerHTML  =  textArea.innerHTML + '</br></br>' +'#CONDUTA'
-        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_conduta.value.replaceAll("\n","</br>")
+        textArea.innerHTML  =  textArea.innerHTML + '</br>' + txt_conduta.innerText.replaceAll("\n","</br>")
     }
 
 

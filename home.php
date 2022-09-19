@@ -21,8 +21,22 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
     <title>Controle Uti - Maice</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="style8.css" rel="stylesheet">
+    <link href="style9.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style_rich_text.css" />
+    
 
     <style>
 
@@ -31,55 +45,11 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
             background-color:#f2f2f2;
         }
 
+
+
     </style>   
     
-    <script>
-        function autoResize() {
-            /*objTextArea1 = document.getElementById('txt_listaProblemas');
-            objTextArea2 = document.getElementById('txtTextArea2');
-            objTextArea3 = document.getElementById('txtTextArea3');
-            objTextArea4 = document.getElementById('txtTextArea4');
-            objTextArea5 = document.getElementById('txtTextArea5');
-            objTextArea6 = document.getElementById('txtTextArea6');
-            objTextArea7 = document.getElementById('txtTextArea7');
-            objTextArea8 = document.getElementById('txtTextArea8');
-            objTextArea9 = document.getElementById('txtTextArea9');
-            objTextArea10 = document.getElementById('txt_listaProblemas0');
-            objTextArea11 = document.getElementById('txt_listaProblemas1');
-            objTextArea12 = document.getElementById('txt_listaProblemas2');
-            objTextArea13 = document.getElementById('txt_listaProblemas3');
-            objTextArea14 = document.getElementById('txt_listaProblemas4');
-            //while (objTextArea.scrollHeight > objTextArea.offsetHeight) {
-            //alert(objTextArea.scrollHeight)
-            //objTextArea1.style.height = objTextArea1.scrollHeight + "px";
-            objTextArea2.style.height = objTextArea2.scrollHeight + "px";
-            objTextArea3.style.height = objTextArea3.scrollHeight + "px";
-            objTextArea4.style.height = objTextArea4.scrollHeight + "px";
-            objTextArea5.style.height = objTextArea5.scrollHeight + "px";
-            objTextArea6.style.height = objTextArea6.scrollHeight + "px";
-            objTextArea7.style.height = objTextArea7.scrollHeight + "px";
-            objTextArea8.style.height = objTextArea8.scrollHeight + "px";
-            objTextArea9.style.height = objTextArea9.scrollHeight + "px";
-            objTextArea10.style.height = objTextArea10.scrollHeight + "px";
-            objTextArea11.style.height = objTextArea11.scrollHeight + "px";
-            objTextArea12.style.height = objTextArea12.scrollHeight + "px";
-            objTextArea13.style.height = objTextArea13.scrollHeight + "px";
-            objTextArea14.style.height = objTextArea14.scrollHeight + "px";
-            //}
-            //while (objTextArea.scrollHeight < objTextArea.offsetHeight) {
-                //objTextArea.rows -= 1;
-            //} */
-        }
-
-        function teste(){
-            console.log("teste")
-        }
-
-        function alertToast(){
-            document.getElementById('toast').style.display = 'block'
-        }
-
-    </script>
+ 
 
 </head>
 <body>
@@ -88,16 +58,63 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
 
     <!--------- MENU ------------>
         
+
+
         <div class="opcoes-menu">
-        
+
+
         <!--<nav class="navbar navbar-expand-lg navbar-dark bg-success">  -->
         <nav class="navbar navbar-dark fixed-top">
+
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img id="imgLogotipoHome" src="imagens/logoMaice2.png"> <span id="tituloMenu">&nbsp; UTI: <?php echo $nomeHospital; ?></span></a>
+                <a class="navbar-brand" href="#">
+                    <img id="imgLogotipoHome" src="imagens/logoMaice2.png"> 
+                    <span id="tituloMenu">
+                        &nbsp; UTI: <?php echo $nomeHospital; ?>
+                    </span>    
+                </a>            
+
+                <span class="container_rich_text">
+                    <!-- Text Format -->
+                    <button id="bold" class="option-button format">
+                    <i class="fa-solid fa-bold"></i>
+                    </button>
+                    <button id="italic" class="option-button format">
+                    <i class="fa-solid fa-italic"></i>
+                    </button>
+                    <button id="underline" class="option-button format">
+                    <i class="fa-solid fa-underline"></i>
+                    </button>
+                    <!--
+                    <button id="text_format" class="option-button format">
+                    <i class="fa-solid fa-font"></i>
+                    </button>
+                    -->
+
+
+                    <!-- Color -->
+                    <div class="input-wrapper">
+                    <label for="foreColor">Cor:</label>
+                    <input type="color" id="foreColor" class="adv-option-button" />
+                    </div>
+                    <!--
+                    <div class="input-wrapper">
+                    <input type="color" id="backColor" class="adv-option-button" />
+                    <label for="backColor">Realce</label>
+                    </div>
+                    -->
+            </span>
+
                 <span id="loadingMenu" style="font-size:13px;color:#ddd">Atualizando...<img src="imagens/loading.gif" style="width:27px;height:27px"></span>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                      
+            </div>
+
+                
+
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <!--
                 <div class="offcanvas-header">
@@ -161,6 +178,8 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
     </nav>    
 
     </div>
+
+
     
     <br><br>
 
@@ -361,6 +380,7 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
                     <img src="imagens/repeat.svg" class="btnTrocarLeito" id="btnTrocarLeitos_<?php echo $i['leito']; ?>">
                     <img src="imagens/copy.svg" class="btnCopy" id="btnCopy_<?php echo $i['leito']; ?>">
                 </div>
+                <div class="divCadastro">
                     <div id="lbl_nome_<?php echo $i['leito']; ?>">Nome: </div>
                     <div id="lbl_sexo_<?php echo $i['leito']; ?>">Sexo:</div>
                     <div id="lbl_dtNascimento_<?php echo $i['leito']; ?>">Dt Nascimento: </div>
@@ -374,26 +394,33 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
                         <a class="link-primary" id="btn_darAlta_<?php echo $i['leito']; ?>">Dar Alta</a>&nbsp;&nbsp;
                         <a class="link-danger" id="btn_darObito_<?php echo $i['leito']; ?>">Obito</a>
                     </div>
+                </div>
 
                     <div class="subtituloTbLeitos">#LISTA DE PROBLEMAS<span id="statusRequisicao_listaProblemas_<?php echo $i['leito']; ?>"></span></div>
                     <input type="hidden" id="txt_id_listaProblemas_<?php echo $i['leito']; ?>">
                     <input type="hidden" id="txt_checkedicao_listaProblemas_<?php echo $i['leito']; ?>">
-                    <textarea id="txt_listaProblemas_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_listaProblemas"></textarea>
+                    <div contenteditable="true" id="txt_listaProblemas_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_listaProblemas"></div>
+
+                    <div class="subtituloTbLeitos">#HIPÓTESES DIAGNÓSTICAS<span id="statusRequisicao_hipotesesDiagnosticas_<?php echo $i['leito']; ?>"></span></div>
+                    <input type="hidden" id="txt_id_hipotesesDiagnosticas_<?php echo $i['leito']; ?>">
+                    <input type="hidden" id="txt_checkedicao_hipotesesDiagnosticas_<?php echo $i['leito']; ?>">
+                    <div contenteditable="true" id="txt_hipotesesDiagnosticas_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_hipotesesDiagnosticas"></div>
+
             </div>
 
             <div class="colHome">
 
                 <div class="subtituloTbLeitos">#EXAMES RELEVANTES<span id="statusRequisicao_examesRelevantes_<?php echo $i['leito']; ?>"></span></div>
-                <!--<textarea onkeyup="autoResize()" id="txtTextArea2" class="tamanhoTextAreas"></textarea>-->
+                <!--<div contenteditable="true" onkeyup="autoResize()" id="txtTextArea2" class="tamanhoTextAreas"></div>-->
                 <input type="hidden" id="txt_id_examesRelevantes_<?php echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_examesRelevantes_<?php echo $i['leito']; ?>">
-                <textarea id="txt_examesRelevantes_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_examesRelevantes"></textarea>
+                <div contenteditable="true" id="txt_examesRelevantes_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_examesRelevantes"></div>
 
                 <div class="subtituloTbLeitos">#CULTURAS<span id="statusRequisicao_culturas_<?php echo $i['leito']; ?>"></span></div>
-                <!--<textarea onkeyup="autoResize()" id="txt_listaProblemas0" class="tamanhoTextAreas"></textarea>-->
+                <!--<div contenteditable="true" onkeyup="autoResize()" id="txt_listaProblemas0" class="tamanhoTextAreas"></div>-->
                 <input type="hidden" id="txt_id_culturas_<?php echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_culturas_<?php echo $i['leito']; ?>">
-                <textarea id="txt_culturas_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_culturas"></textarea>
+                <div contenteditable="true" id="txt_culturas_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_culturas"></div>
 
 
                 <div class="subtituloTbLeitos">#INVASÕES <img src="imagens/btnNovo.png" class="btnNovoHome" id="btnNovoInvasao_<?php echo $i['leito']; ?>"></div>
@@ -413,35 +440,35 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
                 <div class="subtituloTbLeitos">#INFUSÕES<span id="statusRequisicao_infusoes_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_infusoes_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_infusoes_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_infusoes_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_infusoes_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
                 
                 <div class="subtituloTbLeitos">#SINAIS VITAIS<span id="statusRequisicao_sinaisVitais_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_sinaisVitais_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_sinaisVitais_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_sinaisVitais_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_sinaisVitais_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
 
                 <div class="subtituloTbLeitos">#BALANÇO HÍDRICO<span id="statusRequisicao_balancoHidrico_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_balancoHidrico_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_balancoHidrico_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_balancoHidrico_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_balancoHidrico_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
 
                 
                 <div class="subtituloTbLeitos">#NUTRICIONAL<span id="statusRequisicao_nutricional_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_nutricional_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_nutricional_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_nutricional_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_nutricional_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
                 
                 
                 <div class="subtituloTbLeitos">#VENTILAÇÃO<span id="statusRequisicao_ventilacao_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_ventilacao_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_ventilacao_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_ventilacao_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_ventilacao_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
                 
                 
                 <div class="subtituloTbLeitos">#GASOMETRIA<span id="statusRequisicao_gasometria_<?php //echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_gasometria_<?php //echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_gasometria_<?php //echo $i['leito']; ?>">
-                <textarea id="txt_gasometria_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></textarea>
+                <div contenteditable="true" id="txt_gasometria_<?php //echo $i['leito']; ?>" class="tamanhoTextAreas"></div>
                 
 
             </div>
@@ -452,19 +479,19 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
                 <div class="subtituloTbLeitos">#LABORATORIAL <img src="imagens/btnNovo.png" class="btnNovoHome" id="btnNovoLaboratorialClearenceCalc_<?php echo $i['leito']; ?>"><span id="statusRequisicao_laboratorial_<?php echo $i['leito']; ?>"></span></div>
                 <input type="hidden" id="txt_id_laboratorial_<?php echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_laboratorial_<?php echo $i['leito']; ?>">
-                <textarea id="txt_laboratorial_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_laboratorial"></textarea>
+                <div contenteditable="true" id="txt_laboratorial_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_laboratorial"></div>
 
                 <div class="subtituloTbLeitos">#EVOLUÇÃO CLINICA DIÁRIA<span id="statusRequisicao_evolucaoClinicaDiaria_<?php echo $i['leito']; ?>"></span></div>
-                <!--<textarea onkeyup="autoResize()" id="txt_listaProblemas3" class="tamanhoTextAreas"></textarea>-->
+                <!--<div contenteditable="true" onkeyup="autoResize()" id="txt_listaProblemas3" class="tamanhoTextAreas"></div>-->
                 <input type="hidden" id="txt_id_evolucaoClinicaDiaria_<?php echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_evolucaoClinicaDiaria_<?php echo $i['leito']; ?>">
-                <textarea id="txt_evolucaoClinicaDiaria_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_evolucaoClinicaDiaria"></textarea>
+                <div contenteditable="true" id="txt_evolucaoClinicaDiaria_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_evolucaoClinicaDiaria"></div>
             
                 <div class="subtituloTbLeitos">#CONDUTA<span id="statusRequisicao_conduta_<?php echo $i['leito']; ?>"></span></div>
-                <!--<textarea onkeyup="autoResize()" id="txt_listaProblemas4" class="tamanhoTextAreas"></textarea>-->
+                <!--<div contenteditable="true" onkeyup="autoResize()" id="txt_listaProblemas4" class="tamanhoTextAreas"></div>-->
                 <input type="hidden" id="txt_id_conduta_<?php echo $i['leito']; ?>">
                 <input type="hidden" id="txt_checkedicao_conduta_<?php echo $i['leito']; ?>">
-                <textarea id="txt_conduta_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_conduta"></textarea>
+                <div contenteditable="true" id="txt_conduta_<?php echo $i['leito']; ?>" class="tamanhoTextAreas txt_conduta"></div>
 
             </div>
 
@@ -474,8 +501,11 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
 
     <?php } ?>
 
+    <div contenteditable="true" id="txt_global" class="tamanhoTextAreas txt_conduta" style="display:none;"></div>
+    <div contenteditable="true" id="txt_global2" class="tamanhoTextAreas txt_conduta" style="display:none;"></div>
 
-    <script src="script_home14.js"></script>
+
+    <script src="script_home15.js"></script>
     
     <script>
         
@@ -492,6 +522,8 @@ require_once '../../app-evolucao-clinica/variaveis_e_ips.php';
 
     </script>
 
+    <!--Script-->
+    <script src="script_rich_text.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

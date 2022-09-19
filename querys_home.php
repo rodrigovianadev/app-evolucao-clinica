@@ -75,7 +75,9 @@
                     l.id_internacao as id_conduta,
                     l.texto as texto_conduta,
                     m.id_internacao as id_laboratorial,
-                    m.texto as texto_laboratorial
+                    m.texto as texto_laboratorial,
+                    n.id_internacao as id_hipotesesDiagnosticas,
+                    n.texto as texto_hipotesesDiagnosticas
                      
                     FROM tb_internacao_paciente a
                     
@@ -91,6 +93,7 @@
                     left join tb_evolucao_clinica_diaria k on a.id_internacao = k.id_internacao
                     left join tb_conduta l on a.id_internacao = l.id_internacao
                     left join tb_laboratorial m on a.id_internacao = m.id_internacao
+                    left join tb_hipoteses_diagnosticas n on a.id_internacao = n.id_internacao
                      
                     WHERE a.leito = ' . '"' . $_GET["NomeLeito"] . '"' . ' AND a.status_paciente = "internado"';
             
@@ -101,10 +104,10 @@
             $leitosOcupados = $stmt->fetchAll();
             
             $campos = array('id_internacao', 'nome_paciente', 'sexo','dt_nascimento','convenio','dt_internacao', 'peso', 
-                            'saps3','id_lista_problemas','id_infusoes','id_sinaisVitais',
+                            'saps3','id_lista_problemas','id_hipotesesDiagnosticas','id_infusoes','id_sinaisVitais',
                             'id_balancoHidrico','id_nutricional','id_ventilacao','id_gasometria',
                             'id_culturas','id_examesRelevantes','id_evolucaoClinicaDiaria','id_conduta','id_laboratorial',
-                            'texto_listaProblemas','texto_infusoes','texto_sinaisVitais','texto_balancoHidrico',
+                            'texto_listaProblemas','texto_hipotesesDiagnosticas','texto_infusoes','texto_sinaisVitais','texto_balancoHidrico',
                             'texto_nutricional','texto_ventilacao','texto_gasometria','texto_culturas',
                             'texto_examesRelevantes','texto_evolucaoClinicaDiaria','texto_conduta','texto_laboratorial');
 
@@ -878,6 +881,14 @@
     }elseif($_GET['txt_listaProblemas'] == 'update'){
         //txtListaProblemas_update();
         camposLivres_update('tb_lista_problemas');
+
+    }elseif($_GET['txt_hipotesesDiagnosticas'] == 'insert'){ //Hipoteses Diagnosticas
+       
+        camposLivres_insert('tb_hipoteses_diagnosticas');
+    
+    }elseif($_GET['txt_hipotesesDiagnosticas'] == 'update'){
+    
+        camposLivres_update('tb_hipoteses_diagnosticas');        
     
     }elseif($_GET['txt_infusoes'] == 'insert'){ //Infusoes
         //txtInfusoes_insert();

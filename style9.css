@@ -88,11 +88,19 @@
     font-size: 11px;
     border:none;
     background-color: #fff;
+    overflow-y:auto;
+    resize: both;
+    min-width: 100%;
+    max-width: 100%;
 
 }
 
 .txt_listaProblemas{
-    height: 46vh;
+    height: 10vh;
+}
+
+.txt_hipotesesDiagnosticas{
+    height: 36vh;
 }
 
 .txt_examesRelevantes{
@@ -115,11 +123,11 @@
     height: 32vh;
 }
 
-textarea::-webkit-scrollbar {
+div::-webkit-scrollbar {
     width: 8px;
     background-color: #F5F5F5; }
   
-textarea::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: #ddd; }
@@ -168,12 +176,15 @@ textarea::-webkit-scrollbar-thumb {
 .navbar{
     
     background-color: rgba(74, 124, 61,0.8);
+    margin-right: 2px;
 
 }
+
 
 .navbar-nav{
     color: #fff;
 }
+
 
 .btn-close{
     float: right;
@@ -235,6 +246,11 @@ textarea::-webkit-scrollbar-thumb {
     display: inline;
     text-align: left;
     
+}
+
+.divCadastro{
+    text-align: left;
+    font-size: 12px;
 }
 
 .divInvasao, .divAntibiotico{
@@ -339,6 +355,7 @@ textarea::-webkit-scrollbar-thumb {
         font-size: 11px;
         border:none;
         background-color: #fff;
+        overflow-y:auto;
     
     }
 
